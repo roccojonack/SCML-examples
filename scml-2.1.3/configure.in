@@ -1,0 +1,491 @@
+dnl  configure.in --
+dnl  Process this file with autoconf to produce a configure script.
+dnl
+
+dnl
+dnl Initialization.
+dnl
+
+AC_INIT(NEWS)
+AC_CONFIG_AUX_DIR(config)
+
+dnl
+dnl Some simple checks.
+dnl
+
+AC_CANONICAL_SYSTEM
+AM_INIT_AUTOMAKE(package,version,do-no-define)
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_RANLIB
+AC_PROG_INSTALL
+
+AC_ARG_WITH([systemc],[AS_HELP_STRING([--with-systemc],[use --with-systemc=<systemc_dir>])],[],[])
+AC_ARG_WITH([tlm],[AS_HELP_STRING([--with-tlm],[use --with-tlm=<tlm_dir>])],[],[])
+AC_ARG_WITH([target_compiler],[AS_HELP_STRING([--with-target_compiler],[use --with-target_compiler=<target_compiler>])],[],[])
+
+dnl target compiler
+case "${with_target_compiler:-}" in
+  *) target_compiler_enab="yes";   target_compiler="${with_target_compiler}";;
+esac
+dnl target_compiler
+
+dnl
+dnl determine which simulators to build for
+dnl
+
+case "${with_systemc:-}" in
+  "no")  systemc_enab="no";    systemc_path="";;
+  "yes") systemc_enab="yes";   systemc_path="";;
+  "")    systemc_enab="maybe"; systemc_path="";;
+  *)     systemc_enab="yes";   systemc_path="${with_systemc}";;
+esac
+
+dnl it is required for the user to configure with --with-systemc
+dnl otherwise, will look at the directory above the configure dir
+if test -z "$systemc_path"; then
+  AC_MSG_CHECKING(for systemc directory)
+  if test -d "`pwd`/systemc"; then
+    builddir=`pwd`;
+    systemc_path=`cd $builddir/systemc; pwd`
+  elif test -d "`pwd`/../systemc"; then
+    builddir=`pwd`;
+    systemc_path=`cd $builddir/../systemc; pwd`
+  fi
+  if test -z "$systemc_path"; then
+    AC_MSG_WARN(SystemC directory was not found)
+    AC_MSG_RESULT(searched `pwd`/systemc)
+    AC_MSG_RESULT(searched `pwd`/../systemc)
+    AC_MSG_RESULT(unable to find systemc directory. use --with-systemc=<systemc_dir>)
+  else
+    AC_MSG_RESULT($systemc_path)
+  fi
+fi
+
+dnl
+dnl Make sure path to SystemC installation exists and is absolute.
+dnl
+
+if test "$systemc_enab" != "no"; then
+  if test -r "$systemc_path"; then
+    systemc_path=`cd $systemc_path;pwd`;
+  else
+    AC_MSG_ERROR(SystemC installation root directory does not exist.
+       Was systemC installed correctly?)
+  fi
+fi
+
+dnl
+dnl Check for correct SystemC installation
+dnl
+
+EXTRA_GNU_DIR=""
+SYSC_TARGET=""
+case "$target" in 
+  sparc-sun-solaris*)
+    case "$CXX" in
+      CC) SYSC_TARGET="sparcOS5";;
+      c++ | g++*) SYSC_TARGET="gccsparcOS5"; EXTRA_GNU_DIR="/gnu";;
+      *) SYSC_TARGET="gccsparcOS5";;
+    esac
+    ;;
+  x86_64*linux*)
+    if test "$rh_gxx_prog" = "no"; then EXTRA_GNU_DIR="/gnu"; fi
+    SYSC_TARGET64="linux64"
+    SYSC_TARGET="linux";;
+  *linux*)
+    if test "$rh_gxx_prog" = "no"; then EXTRA_GNU_DIR="/gnu"; fi
+    SYSC_TARGET64="linux"
+    SYSC_TARGET="linux";;
+  *cygwin*)
+    SYSC_TARGET="cygwin";;
+  *hpux11*)
+    case "$CXX" in
+      aCC) SYSC_TARGET="hpux11";;
+      *) SYSC_TARGET="gcchpux11"; EXTRA_GNU_DIR="/gnu";;
+    esac
+    ;;
+esac
+
+if test "$systemc_enab" != "no"; then
+  SYSC_PREFIX=$systemc_path/src
+  SYSC_SRC_PREFIX=$systemc_path/src
+  lib_found=0
+  header_found=0
+  if test "SYSC_TARGET" = ""; then
+    AC_MSG_ERROR(Unable to determine the systemC target architecture from $target)
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path/lib-$SYSC_TARGET64-$target_compiler"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path/lib-$SYSC_TARGET64"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path/lib-$SYSC_TARGET-$target_compiler"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path/lib-$SYSC_TARGET"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path/lib$EXTRA_GNU_DIR"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0; then
+    SYSC_LIB_PREFIX="$systemc_path"
+    AC_MSG_CHECKING("for $SYSC_LIB_PREFIX/libsystemc.a")
+    if test -r "$SYSC_LIB_PREFIX/libsystemc.a"; then
+      lib_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $header_found = 0; then
+    SYSC_INC_PREFIX="$systemc_path/include"
+    AC_MSG_CHECKING("for $SYSC_INC_PREFIX/systemc.h")
+    if test -r "$SYSC_INC_PREFIX/systemc.h"; then
+      header_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $header_found = 0; then
+    SYSC_INC_PREFIX=`cd $systemc_path/../include; pwd`
+    AC_MSG_CHECKING("for $SYSC_INC_PREFIX/systemc.h")
+    if test -r "$SYSC_INC_PREFIX/systemc.h"; then
+      header_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $lib_found = 0 -o $header_found = 0; then
+    AC_MSG_ERROR(Could not find all required files for SystemC. 
+       Was systemC installed correctly?)
+  fi
+fi
+
+dnl
+dnl determine which OSCI TLM to use
+dnl
+
+case "${with_tlm:-}" in
+  *)     tlm_enab="yes";  tlm_path="${with_tlm}";;
+esac
+
+dnl it is required for the user to configure with --with-tlm
+dnl otherwise, will look at the systemc include directory
+if test -z "$tlm_path"; then
+  AC_MSG_CHECKING(for tlm directory)
+  if test -d "$systemc_path/include/tlm"; then
+    tlm_path=`cd $systemc_path/include/tlm; pwd`
+  fi
+  if test -z "$tlm_path"; then
+    if test -r "$SYSC_INC_PREFIX/tlm"; then
+      tlm_path=`cd $SYSC_INC_PREFIX; pwd`
+    fi
+    if test -z "$tlm_path"; then
+      AC_MSG_WARN(tlm include directory was not found)
+      AC_MSG_RESULT(searched $systemc_path/systemc/include)
+      AC_MSG_RESULT(unable to find tlm include directory. use --with-tlm=<tlm_dir>)
+    else
+      AC_MSG_RESULT($tlm_path)
+    fi
+  fi
+fi
+
+dnl
+dnl Make sure path to SystemC installation exists and is absolute.
+dnl
+
+if test -r "$tlm_path"; then
+  tlm_path=`cd $tlm_path;pwd`;
+else
+  AC_MSG_ERROR(TLM installation root directory does not exist.
+     Was TLM installed correctly?)
+fi
+
+dnl
+dnl Check for correct TLM installation
+dnl
+
+if test "$tlm_enab" != "no"; then
+  header_found=0
+  if test $header_found = 0; then
+    TLM_INC_PREFIX="$tlm_path"
+    AC_MSG_CHECKING("for $TLM_INC_PREFIX/tlm.h")
+    if test -r "$TLM_INC_PREFIX/tlm.h"; then
+      header_found=1
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
+  fi
+  if test $header_found = 0; then
+    AC_MSG_ERROR(Could not find required files for TLM. 
+       Was TLM installed correctly?)
+  fi
+fi
+
+
+dnl
+dnl Set the compiler flags and target architecture.
+dnl
+
+CXX_COMP=`basename $CXX`
+AR_TOOL="ar cru"
+
+case "$target" in
+    powerpc-apple-macosx*)
+        case "$CXX_COMP" in
+            CC)
+                EXTRA_CXXFLAGS=""
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="macosx"
+		AR_TOOL="$CXX -xar -o"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="macosx"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                { { echo "$as_me:2730: error: \"sorry...compiler not supported\"" >&5
+echo "$as_me: error: \"sorry...compiler not supported\"" >&2;}
+   { (exit 1); exit 1; }; }
+		;;
+        esac
+	AS=as
+        QT_ARCH="powerpc-apple-macosx"
+        ;;
+    sparc-sun-solaris*) 
+        case "$CXX_COMP" in
+            CC)
+                EXTRA_CXXFLAGS=""
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="sparcOS5"
+		AR_TOOL="$CXX -xar -o"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="gccsparcOS5"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                AC_MSG_ERROR("sorry...compiler not supported")
+		;;
+        esac
+	AS=as
+        QT_ARCH="sparc-os2"
+        ;;
+     x86_64*linux*)
+        case "$CXX_COMP" in
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="linux64"
+                CC="$CXX"
+                CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                AC_MSG_ERROR("sorry...compiler not supported")
+                ;;
+        esac
+        AS=as
+        QT_ARCH="x86_64"
+        ;;
+    *linux*)
+        case "$CXX_COMP" in
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="linux"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                AC_MSG_ERROR("sorry...compiler not supported")
+		;;
+        esac
+	AS=as
+        QT_ARCH="iX86"
+        ;;
+    *cygwin*)
+        case "$CXX_COMP" in
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="cygwin"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                AC_MSG_ERROR("sorry...compiler not supported")
+		;;
+        esac
+	AS=as
+        QT_ARCH="iX86"
+        ;;
+    *hpux11*)
+        case "$CXX_COMP" in
+            aCC)
+                EXTRA_CXXFLAGS="-AA -ext +DA2.0 +DS2.0"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="+O1"
+                TARGET_ARCH="hpux11"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS -Wa,-w36"
+                ;;
+            c++ | g++)
+                EXTRA_CXXFLAGS="-Wall"
+                DEBUG_CXXFLAGS="-g"
+                OPT_CXXFLAGS="-O3"
+                TARGET_ARCH="gcchpux11"
+        	CC="$CXX"
+        	CFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+                ;;
+            *)
+                AC_MSG_ERROR("sorry...compiler not supported")
+		;;
+        esac
+	AS=/usr/ccs/bin/as
+        QT_ARCH="hppa"
+        ;;
+    *)
+        AC_MSG_ERROR("sorry...architecture not supported")
+        ;;
+esac
+
+dnl
+dnl The fixed-point datatypes "package" is included.
+dnl
+
+dnl  EXTRA_CXXFLAGS="$EXTRA_CXXFLAGS -DSC_INCLUDE_FX"
+CXXFLAGS="$EXTRA_CXXFLAGS $OPT_CXXFLAGS"
+
+dnl
+dnl Set the default prefix and make sure the prefix is absolute.
+dnl
+
+test "x$prefix" = xNONE && prefix=$srcdir
+current_dir=`pwd`; cd $prefix; prefix=`pwd`; cd $current_dir
+
+SCML_PREFIX="$prefix"
+
+SYSC_INC="-I$SYSC_INC_PREFIX"
+OSCITLM_INC="-I$TLM_INC_PREFIX"
+SCML_INC="-I$SCML_PREFIX/include"
+SCML2_INC="-I$SCML2_PREFIX/include"
+
+SYSC_LIB="-L$SYSC_LIB_PREFIX -lsystemc"
+SCML_LIB="-L$prefix/lib-$TARGET_ARCH -lModelingObjects -lscml2_logging"
+SCML2_LIB="-L$prefix/lib-$TARGET_ARCH -lscml2 -lscml2_logging -lscml2_testing"
+
+COMMONINC="-DSC_USE_STD_STRING $SCML_INC $S2CML_INC $SYSC_INC $OSCITLM_INC"
+COMMONLIB="$SCML2_LIB $SCML_LIB $SYSC_LIB $PLATFORMLIBS"
+
+MAIN_LIBRARY="libModelingObjects.a"
+
+
+dnl
+dnl Substitution variables.
+dnl
+
+AC_SUBST(EXTRA_CXXFLAGS)
+AC_SUBST(DEBUG_CXXFLAGS)
+AC_SUBST(OPT_CXXFLAGS)
+AC_SUBST(TARGET_ARCH)
+AC_SUBST(QT_ARCH)
+AC_SUBST(AR_TOOL)
+AC_SUBST(AS)
+
+AC_SUBST(SYSC_INC)
+AC_SUBST(OSCITLM_INC)
+
+AC_SUBST(COMMONINC)
+AC_SUBST(COMMONLIB)
+
+AC_SUBST(MAIN_LIBRARY)
+
+
+dnl
+dnl Create the Makefiles.
+dnl
+
+AC_OUTPUT(
+ Makefile
+ src/Makefile 
+ src/ModelingObjects/Makefile 
+ src/PV/Makefile 
+ src/scml2/Makefile 
+ src/scml2_logging/Makefile 
+ src/scml2_testing/Makefile 
+ examples/Makefile 
+ examples/simple_timer/Makefile 
+ examples/simple_timer/PV/Makefile 
+ examples/simple_IPE/Makefile 
+ examples/simple_IPE/PV/Makefile 
+ examples/HWaccelerator/Makefile 
+ examples/HWaccelerator/PV/Makefile 
+ examples/Memory/Makefile 
+ examples/Memory/PV/Makefile 
+ examples/Memory/TLM2/Makefile 
+ examples/cache/Makefile 
+ examples/cache/PV/Makefile 
+ examples/scml2/Makefile 
+ examples/scml2/ExampleMemory/Makefile 
+)
+
+dnl Taf!

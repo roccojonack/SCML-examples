@@ -1,0 +1,29 @@
+I_top.I_simple_timer_PV timer reached 1 @time 0 s
+I_top.I_simple_timer_PV_TB timer value is 39 @time 40 ns
+I_top.I_simple_timer_PV timer reached 50 @time 50 ns
+I_top.I_simple_timer_PV_TB timer value is 29 @time 80 ns
+I_top.I_simple_timer_PV timer reached 50 @time 100 ns
+I_top.I_simple_timer_PV_TB timer value is 19 @time 120 ns
+I_top.I_simple_timer_PV timer reached 50 @time 150 ns
+I_top.I_simple_timer_PV_TB timer value is 9 @time 160 ns
+I_top.I_simple_timer_PV_TB timer value is 49 @time 200 ns
+I_top.I_simple_timer_PV timer reached 50 @time 200 ns
+I_top.I_simple_timer_PV_TB timer value is 39 @time 240 ns
+I_top.I_simple_timer_PV timer reached 50 @time 250 ns
+I_top.I_simple_timer_PV_TB timer value is 29 @time 280 ns
+I_top.I_simple_timer_PV timer reached 50 @time 300 ns
+I_top.I_simple_timer_PV_TB timer value is 19 @time 320 ns
+I_top.I_simple_timer_PV timer reached 50 @time 350 ns
+I_top.I_simple_timer_PV_TB timer value is 9 @time 360 ns
+I_top.I_simple_timer_PV_TB timer value is 49 @time 400 ns
+I_top.I_simple_timer_PV timer reached 1 @time 400 ns
+I_top.I_simple_timer_PV timer reached 100 @time 500 ns
+I_top.I_simple_timer_PV timer reached 100 @time 600 ns
+I_top.I_simple_timer_PV timer reached 100 @time 700 ns
+I_top.I_simple_timer_PV timer reached 100 @time 800 ns
+I_top.I_simple_timer_PV timer reached 100 @time 900 ns
+I_top.I_simple_timer_PV timer reached 100 @time 1 us
+I_top.I_simple_timer_PV timer reached 100 @time 1100 ns
+I_top.I_simple_timer_PV timer reached 100 @time 1200 ns
+I_top.I_simple_timer_PV timer reached 100 @time 1300 ns
+

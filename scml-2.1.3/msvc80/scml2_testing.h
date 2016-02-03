@@ -1,0 +1,46 @@
+// Copyright (C) 2011 Synopsys, Inc.
+// All rights reserved worldwide.
+
+#ifndef SCML2_TESTING_H
+#define SCML2_TESTING_H
+
+#include "assertion_macros.h"
+#include "equals.h"
+#include "initiator_socket_proxy.h"
+#include "initiator_socket_proxy_base.h"
+#include "input_clock_proxy.h"
+#include "input_pin_proxy.h"
+#include "input_output_pin_proxy.h"
+#include "memory_element_value_proxy.h"
+#include "memory_if.h"
+#include "output_pin_proxy.h"
+#include "output_pin_proxy_base.h"
+#include "parameter_configuration.h"
+#include "parameter_configurations.h"
+#include "pin_value_proxy.h"
+#include "predicate.h"
+#include "property_proxy.h"
+#include "property_server.h"
+#include "proxy.h"
+#include "register_value_proxy.h"
+#include "reporter_if.h"
+#include "stdout_reporter.h"
+#include "systemc_test_runner.h"
+#include "target_socket_proxy.h"
+#include "target_socket_proxy_base.h"
+#include "test.h"
+#include "test_base.h"
+#include "test_exception.h"
+#include "test_group.h"
+#include "test_group_base.h"
+#include "test_group_factory.h"
+#include "test_group_factory_base.h"
+#include "test_group_registration.h"
+#include "test_group_registry.h"
+#include "test_group_registry_base.h"
+#include "test_macros.h"
+#include "test_memory.h"
+#include "test_memory_element.h"
+#include "test_runner.h"
+
+#endif

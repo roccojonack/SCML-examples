@@ -1,0 +1,29 @@
+memory_storage_creator.o: ../../../src/scml2/memory_storage_creator.cc \
+ ../../../src/scml2/../scml2/memory_storage_creator.h \
+ ../../../src/scml2/../scml2/memory_heap_storage.h \
+ ../../../src/scml2/../scml2/memory_storage_base.h \
+ /nfs/site/proj/inway/tools/opensource/gcc/4.5.2/linux50_64/lib/gcc/x86_64-unknown-linux-gnu/4.5.2/../../../../include/c++/4.5.2/cassert \
+ /usr/include/assert.h \
+ /nfs/site/proj/inway/tools/opensource/gcc/4.5.2/linux50_64/lib/gcc/x86_64-unknown-linux-gnu/4.5.2/include-fixed/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h
+
+../../../src/scml2/../scml2/memory_storage_creator.h:
+
+../../../src/scml2/../scml2/memory_heap_storage.h:
+
+../../../src/scml2/../scml2/memory_storage_base.h:
+
+/nfs/site/proj/inway/tools/opensource/gcc/4.5.2/linux50_64/lib/gcc/x86_64-unknown-linux-gnu/4.5.2/../../../../include/c++/4.5.2/cassert:
+
+/usr/include/assert.h:
+
+/nfs/site/proj/inway/tools/opensource/gcc/4.5.2/linux50_64/lib/gcc/x86_64-unknown-linux-gnu/4.5.2/include-fixed/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:

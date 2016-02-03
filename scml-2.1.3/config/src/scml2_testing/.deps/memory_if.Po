@@ -1,0 +1,4 @@
+memory_if.o: ../../../src/scml2_testing/memory_if.cc \
+ ../../../src/scml2_testing/../scml2_testing/memory_if.h
+
+../../../src/scml2_testing/../scml2_testing/memory_if.h:

@@ -1,0 +1,82 @@
+Starting simulation: -1 ns
+I_top.pI_Memory_TLM2 : start of simulation
+I_top.I_TrafficGen: Send write request: A = 0x0, D = 0x0 @ 0 s
+I_top.I_TrafficGen: Received ok response @ 0 s
+I_top.I_TrafficGen: Send write request: A = 0x4, D = 0x1 @ 10 ns
+I_top.I_TrafficGen: Received ok response @ 10 ns
+I_top.I_TrafficGen: Send write request: A = 0x8, D = 0x2 @ 20 ns
+I_top.I_TrafficGen: Received ok response @ 20 ns
+I_top.I_TrafficGen: Send write request: A = 0xc, D = 0x3 @ 30 ns
+I_top.I_TrafficGen: Received ok response @ 30 ns
+I_top.I_TrafficGen: Send write request: A = 0x10, D = 0x4 @ 40 ns
+I_top.I_TrafficGen: Received ok response @ 40 ns
+I_top.I_TrafficGen: Send write request: A = 0x14, D = 0x5 @ 50 ns
+I_top.I_TrafficGen: Received ok response @ 50 ns
+I_top.I_TrafficGen: Send write request: A = 0x18, D = 0x6 @ 60 ns
+I_top.I_TrafficGen: Received ok response @ 60 ns
+I_top.I_TrafficGen: Send write request: A = 0x1c, D = 0x7 @ 70 ns
+I_top.I_TrafficGen: Received ok response @ 70 ns
+I_top.I_TrafficGen: Send write request: A = 0x20, D = 0x8 @ 80 ns
+I_top.I_TrafficGen: Received ok response @ 80 ns
+I_top.I_TrafficGen: Send write request: A = 0x24, D = 0x9 @ 90 ns
+I_top.I_TrafficGen: Received ok response @ 90 ns
+I_top.I_TrafficGen: Send write request: A = 0x28, D = 0xa @ 100 ns
+I_top.I_TrafficGen: Received ok response @ 100 ns
+I_top.I_TrafficGen: Send write request: A = 0x2c, D = 0xb @ 110 ns
+I_top.I_TrafficGen: Received ok response @ 110 ns
+I_top.I_TrafficGen: Send write request: A = 0x30, D = 0xc @ 120 ns
+I_top.I_TrafficGen: Received ok response @ 120 ns
+I_top.I_TrafficGen: Send write request: A = 0x34, D = 0xd @ 130 ns
+I_top.I_TrafficGen: Received ok response @ 130 ns
+I_top.I_TrafficGen: Send write request: A = 0x38, D = 0xe @ 140 ns
+I_top.I_TrafficGen: Received ok response @ 140 ns
+I_top.I_TrafficGen: Send write request: A = 0x3c, D = 0xf @ 150 ns
+I_top.I_TrafficGen: Received ok response @ 150 ns
+I_top.I_TrafficGen: Send write request: A = 0x40, D = 0x10 @ 160 ns
+I_top.I_TrafficGen: Received ok response @ 160 ns
+I_top.I_TrafficGen: Send write request: A = 0x44, D = 0x11 @ 170 ns
+I_top.I_TrafficGen: Received ok response @ 170 ns
+I_top.I_TrafficGen: Send write request: A = 0x48, D = 0x12 @ 180 ns
+I_top.I_TrafficGen: Received ok response @ 180 ns
+I_top.I_TrafficGen: Send write request: A = 0x4c, D = 0x13 @ 190 ns
+I_top.I_TrafficGen: Received ok response @ 190 ns
+I_top.I_TrafficGen: Send read request: A = 0x0 @ 200 ns
+I_top.I_TrafficGen: Received ok response: D = 0x0 @ 200 ns
+I_top.I_TrafficGen: Send read request: A = 0x4 @ 210 ns
+I_top.I_TrafficGen: Received ok response: D = 0x1 @ 210 ns
+I_top.I_TrafficGen: Send read request: A = 0x8 @ 220 ns
+I_top.I_TrafficGen: Received ok response: D = 0x2 @ 220 ns
+I_top.I_TrafficGen: Send read request: A = 0xc @ 230 ns
+I_top.I_TrafficGen: Received ok response: D = 0x3 @ 230 ns
+I_top.I_TrafficGen: Send read request: A = 0x10 @ 240 ns
+I_top.I_TrafficGen: Received ok response: D = 0x4 @ 240 ns
+I_top.I_TrafficGen: Send read request: A = 0x14 @ 250 ns
+I_top.I_TrafficGen: Received ok response: D = 0x5 @ 250 ns
+I_top.I_TrafficGen: Send read request: A = 0x18 @ 260 ns
+I_top.I_TrafficGen: Received ok response: D = 0x6 @ 260 ns
+I_top.I_TrafficGen: Send read request: A = 0x1c @ 270 ns
+I_top.I_TrafficGen: Received ok response: D = 0x7 @ 270 ns
+I_top.I_TrafficGen: Send read request: A = 0x20 @ 280 ns
+I_top.I_TrafficGen: Received ok response: D = 0x8 @ 280 ns
+I_top.I_TrafficGen: Send read request: A = 0x24 @ 290 ns
+I_top.I_TrafficGen: Received ok response: D = 0x9 @ 290 ns
+I_top.I_TrafficGen: Send read request: A = 0x28 @ 300 ns
+I_top.I_TrafficGen: Received ok response: D = 0xa @ 300 ns
+I_top.I_TrafficGen: Send read request: A = 0x2c @ 310 ns
+I_top.I_TrafficGen: Received ok response: D = 0xb @ 310 ns
+I_top.I_TrafficGen: Send read request: A = 0x30 @ 320 ns
+I_top.I_TrafficGen: Received ok response: D = 0xc @ 320 ns
+I_top.I_TrafficGen: Send read request: A = 0x34 @ 330 ns
+I_top.I_TrafficGen: Received ok response: D = 0xd @ 330 ns
+I_top.I_TrafficGen: Send read request: A = 0x38 @ 340 ns
+I_top.I_TrafficGen: Received ok response: D = 0xe @ 340 ns
+I_top.I_TrafficGen: Send read request: A = 0x3c @ 350 ns
+I_top.I_TrafficGen: Received ok response: D = 0xf @ 350 ns
+I_top.I_TrafficGen: Send read request: A = 0x40 @ 360 ns
+I_top.I_TrafficGen: Received ok response: D = 0x10 @ 360 ns
+I_top.I_TrafficGen: Send read request: A = 0x44 @ 370 ns
+I_top.I_TrafficGen: Received ok response: D = 0x11 @ 370 ns
+I_top.I_TrafficGen: Send read request: A = 0x48 @ 380 ns
+I_top.I_TrafficGen: Received ok response: D = 0x12 @ 380 ns
+I_top.I_TrafficGen: Send read request: A = 0x4c @ 390 ns
+I_top.I_TrafficGen: Received ok response: D = 0x13 @ 390 ns

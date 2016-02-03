@@ -1,0 +1,37 @@
+I_simple_IPE_PV_testbench : test active low level triggered
+I_simple_IPE_PV_testbench : irq_handler() called at time 0 s, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 1 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x1
+I_simple_IPE_PV_testbench : irq_vector is 0x2
+I_simple_IPE_PV_testbench : irq_vector is 0x4
+I_simple_IPE_PV_testbench : irq_vector is 0x8
+I_simple_IPE_PV_testbench : irq_vector is 0x16
+I_simple_IPE_PV_testbench : irq_vector is 0x32
+I_simple_IPE_PV_testbench : irq_vector is 0x64
+I_simple_IPE_PV_testbench : irq_vector is 0x128
+I_simple_IPE_PV_testbench : irq_handler() called at time 9 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 11 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x128
+I_simple_IPE_PV_testbench : irq_handler() called at time 12 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 13 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x64
+I_simple_IPE_PV_testbench : irq_handler() called at time 14 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 15 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x32
+I_simple_IPE_PV_testbench : irq_handler() called at time 16 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 17 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x16
+I_simple_IPE_PV_testbench : irq_handler() called at time 18 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 19 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x8
+I_simple_IPE_PV_testbench : irq_handler() called at time 20 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 21 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x4
+I_simple_IPE_PV_testbench : irq_handler() called at time 22 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 23 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x2
+I_simple_IPE_PV_testbench : irq_handler() called at time 24 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : irq_handler() called at time 25 ns, p_irq_in is 0
+I_simple_IPE_PV_testbench : irq_vector is 0x1
+I_simple_IPE_PV_testbench : irq_handler() called at time 26 ns, p_irq_in is 1
+I_simple_IPE_PV_testbench : End of test

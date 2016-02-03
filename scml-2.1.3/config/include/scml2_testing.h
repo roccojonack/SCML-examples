@@ -1,0 +1,46 @@
+// Copyright (C) 2011 Synopsys, Inc.
+// All rights reserved worldwide.
+
+#ifndef SCML2_TESTING_H
+#define SCML2_TESTING_H
+
+#include "scml2_testing/assertion_macros.h"
+#include "scml2_testing/equals.h"
+#include "scml2_testing/initiator_socket_proxy.h"
+#include "scml2_testing/initiator_socket_proxy_base.h"
+#include "scml2_testing/input_clock_proxy.h"
+#include "scml2_testing/input_pin_proxy.h"
+#include "scml2_testing/input_output_pin_proxy.h"
+#include "scml2_testing/memory_element_value_proxy.h"
+#include "scml2_testing/memory_if.h"
+#include "scml2_testing/output_pin_proxy.h"
+#include "scml2_testing/output_pin_proxy_base.h"
+#include "scml2_testing/parameter_configuration.h"
+#include "scml2_testing/parameter_configurations.h"
+#include "scml2_testing/pin_value_proxy.h"
+#include "scml2_testing/predicate.h"
+#include "scml2_testing/property_proxy.h"
+#include "scml2_testing/property_server.h"
+#include "scml2_testing/proxy.h"
+#include "scml2_testing/register_value_proxy.h"
+#include "scml2_testing/reporter_if.h"
+#include "scml2_testing/stdout_reporter.h"
+#include "scml2_testing/systemc_test_runner.h"
+#include "scml2_testing/target_socket_proxy.h"
+#include "scml2_testing/target_socket_proxy_base.h"
+#include "scml2_testing/test.h"
+#include "scml2_testing/test_base.h"
+#include "scml2_testing/test_exception.h"
+#include "scml2_testing/test_group.h"
+#include "scml2_testing/test_group_base.h"
+#include "scml2_testing/test_group_factory.h"
+#include "scml2_testing/test_group_factory_base.h"
+#include "scml2_testing/test_group_registration.h"
+#include "scml2_testing/test_group_registry.h"
+#include "scml2_testing/test_group_registry_base.h"
+#include "scml2_testing/test_macros.h"
+#include "scml2_testing/test_memory.h"
+#include "scml2_testing/test_memory_element.h"
+#include "scml2_testing/test_runner.h"
+
+#endif

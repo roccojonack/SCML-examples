@@ -1,0 +1,58 @@
+* SystemC Modeling Library 2.1.3
+  New functions in SCML2 testing library have been added.
+  Bug fixes.
+
+* SystemC Modeling Library 2.1.2
+  The SCML2 testing library has been added.
+  New functions have been added for registering behavior (with or without user
+  callbacks) to memories.
+  User callback registration functions have been added for ports
+  (set_change_callback, set_posedge_callback, set_negedge_callback).
+  systemc-2.3.0 is supported.
+  MSVC-8.0 is supported. 
+
+* SystemC Modeling Library 2.1.1
+  A bug when using enums with memories/registers/bitfields of sc_biguint
+  has been fixed.
+  An extra template parameter has been added to the reg_vector_creator.
+  The semantics of the 'spacing' parameter in reg_vector_creator has changed.
+
+* SystemC Modeling Library 2.1
+  The SCML2 logging library has been added.
+  The status object has been added.
+  Windows support has been added.
+
+* SystemC Modeling Library 2.0
+  A new version of the SystemC Modeling Library (SCML2) is now available. 
+  From this release onward, this is the default version for new models. 
+  The previous version of the library (SCML1, described in SystemC 
+  Modeling Library Manual) remains supported. For detailed information
+  about SCML2, see the SystemC Modeling Library 2 Manual.
+  SCML2 example ExampleMemory has been added
+  
+* SystemC Modeling Library 1.4.1
+  fixed a race condition in the scml_tlm2_initiator_adaptor
+
+* SystemC Modeling Library 1.4
+  support for data types > 64 bit (in PV interfaces and memory types) has been added
+  support for 64 bit address type has been added
+  initial (with the TLM2 adapters) support for TLM2 interfaces has been added
+  memory TLM2 example has been added
+  systemc-2.1.v1 is not supported
+
+* SystemC Modeling Library 1.3
+  scml_router has been added
+  example of scml_router usage has been added
+  scml_command_processor is supported (modules can be compiled)
+  systemc-2.2.0 is supported 
+
+* SystemC Modeling Library 1.2
+  documentation update for scml_properties
+
+* SystemC Modeling Library 1.1
+  scml_properties have been added
+  examples based on OCP are available
+  
+* SystemC Modeling Library 1.0
+  This is the first release of SystemC Modeling Library.
+

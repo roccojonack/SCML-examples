@@ -1,0 +1,194 @@
+SystemC Modeling Library 2.1.3
+==============================
+
+Test Results
+++++++++++++
+
+The SystemC Modeling Library 2.1.3 has been tested with the GNU C++
+compiler version 4.5.2 and 4.5.2 64 bit on
+
+  1. Red Hat Enterprise Linux WS release 4 (Nahant Update 8)
+  2. SUSE Linux Enterprise Server 10 SP2
+
+and MSVC-8.0, MSVC-9.0 and MSVC-10.0 compiler on
+
+  1. Windows 7
+  2. Windows XP
+
+Dependencies
+++++++++++++
+
+SystemC Modeling Library (Memory and Bitfields) 2.1.3 depends on
+
+  1. SystemC 2.3.0
+  2. OSCI TLM 2.0
+
+  NOTE SystemC 2.3.0 contains already TLM 2.0
+
+These can be obtained from http://www.systemc.org/
+
+Linux Installation
+++++++++++++++++++
+
+  1. Change to the top level directory (scml-2.1.3)
+
+
+  2. Create a temporary directory, e.g.,
+
+        > mkdir objdir
+
+  3. Change to the temporary directory, e.g.,
+
+        > cd objdir
+
+  4. Set the following environment variable(s):
+
+     For gcc compilers on Linux:
+
+        > setenv CXX g++
+
+  5. Configure the package for your system, e.g.,
+
+        > ../configure --with-systemc=<path_to_SystemC> \
+                       --with-tlm=<path_to_OSCI_TLM>
+
+     If you do not specify the path to a SystemC installation, configure will 
+     look in ../systemc. 
+        
+     If your OSCI TLM package is located at the same root directory as
+     your SystemC, you do not need to specify the --with-tlm option, e.g.,
+        
+        > ../configure --with-systemc=/usr/local/systemc-2.3.0
+
+     If your OSCI TLM package is installed locally, you need to specify
+     the --with-tlm option, e.g.,
+
+        > ../configure --with-systemc=/usr/local/systemc-2.3.0 \
+                       --with-tlm=/usr/local/TLM-2008-06-09/include/tlm
+     
+     If you do specify the path, use an absolute path (one starting with "/"),
+     and do not use wildcards.
+
+     By default the package will be installed in the top level (scml-2.1.3)
+     directory.
+
+     If you want to install the package elsewhere, use the --prefix option,
+     e.g., 
+
+        > ../configure --prefix=/usr/local/scml \
+                       --with-systemc=/usr/local/systemc-2.3.0
+
+        Note: make sure you have created the target directory before installing
+              the package.
+
+        
+  6. Compile and install the package.
+
+        > gmake install
+
+  7. Test the example suite.
+
+        > gmake check
+
+        Note: make sure the LD_LIBBRARY_PATH is set correctly to find
+        libsystemc-2.3.0.so.
+
+
+
+Note for developers: 
+ 
+  The 'configure' script makes use of the
+  GNU auto-tools `aclocal', `automake', and `autoconf'.
+  Versions of auto-tools used:
+    autoconf (GNU Autoconf) 2.59
+    automake (GNU automake) 1.9.2
+    aclocal (GNU automake) 1.9.2
+
+  If you change something in configure.in, execute
+   aclocal
+   autoconf
+   automake
+   to regenerate the 'configure' script and Makefile.in files.
+
+   
+Windows Installation
+++++++++++++++++++++
+
+  1. Change to the top level directory (scml-2.1.3)
+
+  2. Copy files:
+     msvc80/scml2.h to src/scml2 directory
+     msvc80/scml2_logging.h to src/scml2_logging directory
+     msvc80/scml2_testing.h to src/scml2_testing directory
+
+  3. Set SYSTEMC and TLM environment variables to point to the installations
+     of SystemC, TLM2 and scv, e.g.,
+       SYSTEMC=C:\apps\systemc-2.3.0\msvc80
+       TLM2=C:\apps\TLM-2009-07-15
+
+    NOTE SystemC 2.3.0 contains TLM, so you do not need to set TLM2
+
+  4. Compile scml2.lib, ModelingObjects.lib, scml2_logging.lib, scml2_testing
+     and scml2_testing_systemc_main.lib libraries:
+     Change to the msvc80/scml directory and 
+     1. double-click on 'scml2.vcproj' to launch Visual C++ and select 'Build scml2'
+        under the Build menu or press F7 to build 'scml2.lib'.
+        Exit Visual C++.
+     2. double-click on 'ModelingObjects.vcproj' to launch Visual C++ and select 
+        'Build ModelingObjects' under the Build menu or press F7 to build 
+        'ModelingObjects.lib'.
+        Exit Visual C++.
+     3. double-click on 'scml2_logging.vcproj' to launch Visual C++ and select 
+        'Build scml2_logging' under the Build menu or press F7 to build
+        'scml2_logging.lib'.
+        Exit Visual C++.
+     4. double-click on 'scml2_testing.vcproj' to launch Visual C++ and select 
+        'Build scml2_testing' under the Build menu or press F7 to build
+        'scml2_testing.lib'.
+        Exit Visual C++.
+     5. double-click on 'scml2_testing_systemc_main.vcproj' to launch Visual C++ and select 
+        'Build scml2_testing_systemc_main' under the Build menu or press F7 to build
+        'scml2_testing_systemc_main.lib'.
+        Exit Visual C++.
+
+        
+  5. Set SCML environment variable to point to the installation location, e.g.,
+       SCML=C:\apps\scml-2.1.3\msvc80
+
+  6. Test the examples:
+     Change to the 'examples' directory, change to the individual example and
+     double-click on the '<examplename>.vcproj' file.
+     In Visual C++, select 'Build <examplename>' under the 'Build' menu or
+     press F7 to build the example. 
+     To run the example, select Debug > Start Without debugging or press 'Ctrl+F5'.
+     To debug the example, select Debug > Start Debugging or press 'F5'
+
+  NOTE project files contain reefrence to TLM2, if you use SystemC 2.3.0 that
+       includes TLM, the references to TLM2 can be removed from project files.
+
+Creating Windows Applications
+-----------------------------
+
+When creating your own application you need to specify
+  1. Additional Include Directories : 
+    $(SCML)../src/ModelingObjects
+    $(SCML)../src/ModelingObjects/scmlinc
+    $(SCML)../src/scml2
+    $(SCML)../src/scml2_logging
+    $(SCML)../src/scml2_testing
+    $(SCML)../src/PV
+
+    depending on which include files you use.
+
+  2. Additional Library Directories
+     $(SCML)\scml\Debug
+
+  3. Additional Dependencies
+     ModelingPbjects.lib
+     scml2.lib
+     scml2_logging.lib
+     scml2_testing.lib
+     scml2_testing_systemc_main.lib
+
+     depending on which libraries you want to link in.
+

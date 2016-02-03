@@ -1,0 +1,2 @@
+scml_synchroniser_registry.o: \
+ ../../../src/ModelingObjects/src/scml_synchroniser_registry.cc

@@ -1,0 +1,4 @@
+i_initiator: Write back all: Hits = 1024 Misses = 512 Reads = 512 Writes = 480
+i_initiator: Write through: Hits = 1024 Misses = 512 Reads = 512 Writes = 512
+i_initiator: Write back dirty: Hits = 1024 Misses = 512 Reads = 512 Writes = 240
+

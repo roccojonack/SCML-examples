@@ -1,0 +1,7 @@
+memory_storage_base.o: ../../../src/scml2/memory_storage_base.cc \
+ ../../../src/scml2/../scml2/memory_storage_base.h \
+ ../../../src/scml2/../scml2/memory_heap_storage.h
+
+../../../src/scml2/../scml2/memory_storage_base.h:
+
+../../../src/scml2/../scml2/memory_heap_storage.h:

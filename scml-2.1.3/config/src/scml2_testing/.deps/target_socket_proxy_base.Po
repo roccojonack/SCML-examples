@@ -1,0 +1,5 @@
+target_socket_proxy_base.o: \
+ ../../../src/scml2_testing/target_socket_proxy_base.cc \
+ ../../../src/scml2_testing/../scml2_testing/target_socket_proxy_base.h
+
+../../../src/scml2_testing/../scml2_testing/target_socket_proxy_base.h:

@@ -1,0 +1,5 @@
+scml_array_notify_if.o: \
+ ../../../src/ModelingObjects/src/scml_array_notify_if.cc \
+ ../../../src/ModelingObjects/scmlinc/scml_array_notify_if.h
+
+../../../src/ModelingObjects/scmlinc/scml_array_notify_if.h:

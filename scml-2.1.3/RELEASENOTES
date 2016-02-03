@@ -1,0 +1,37 @@
+            Release Notes for SystemC Modeling Library Release 2.1.3 
+            ========================================================
+
+CONTENTS
+========
+
+  1) What's new in this release?
+     - SCML2 testing Library
+     
+  2) Incompatibilities with previous releases
+
+  3) Bug fixes
+     - Reading a property_proxy value can return a wrong value
+     - Detect dead locks of the Unittest test runner thread
+     - Debug read accesses no longer causes a potential infinite loop 
+  
+1) What's new in this release?
+==============================
+   - SCML2 testing Library
+     AMBA-PV target socket proxy now provides read() and write() functions for unit testing.
+
+2) Incompatibilities with previous releases
+===========================================
+
+No incompatibilities.
+
+3) Bug fixes
+
+  - Reading a property_proxy value can return a wrong value:
+Reading an earlier written property in a unit test before initialization of the model would result in an incorrect return value. This issue has been fixed.
+
+  - Detect dead locks of the Unittest test runner thread 
+When a unit test waits for an event that never happens, the test would silently succeed and further tests would not be run. If there are tests that did not finish or run at all, the test program fails, and reports these tests in the final report. This issue has been fixed.
+
+  - Debug read accesses no longer causes a potential infinite loop 
+This issue has been fixed.
+
